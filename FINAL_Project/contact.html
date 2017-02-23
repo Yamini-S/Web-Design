@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Final Project:Online Book Store</title>
+	<link rel="stylesheet" type="text/css" href="projectStyle.css">
+	<link rel="stylesheet" type="text/css" href="queries.css">
+	<meta name="viewpoint" content="width=device-width,initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+
+
+</head>
+
+<body>
+	<div class="container">
+		
+		<div class="header">
+			<div class="header1">
+				<h1><img src="Images/headImage.png" alt="headingImage" width="50px" height="40px"/>Public Library</h1>
+			</div>
+		</div>
+
+		<div class="navigation">
+			<ul class="dropdown">
+                <li id="menu-list"> <a href=""><span><img src="Images/menu.png" alt="menu icon" width="20px" /></span></li>
+            </ul>
+            <ul class="menu"> 
+			    <li class="link-list-item"> <a href="Project.html">HOME </a></li>
+            	<li class="link-list-item"> <a href="topNavigation1.html">ABOUT </a></li>
+                <li class="link-list-item"> <a href="topNavigation2.html">BOOKS</a></li>
+                <li class="link-list-item"> <a href="topNavigation2.html">NEW </a></li>
+                <li class="link-list-item"> <a href="imageNavigation.html">EVENTS</a></li>
+                <li class="link-list-item"> <a href="contact.html">CONTACT </a></li>
+			</ul>
+		</div>
+		
+	<div class="mainContent">
+	   <br/>
+	   <h4 style="font-style:italic; color:red;"><a href="#">Call us</a></h4>
+	   <p><strong>BPL Directory:</strong>617-536-5400</p>
+	   <p><strong>Central Library in Copley Square:</strong></p>
+	   <p> Reference: 617-859-2270<br/>
+           Borrower Services: 617-859-2321<br/>
+           Press Inquiries: 617-859-2319<br/>
+           Contact our Research Departments for subject-specific questions </p>
+		   
+	   <h4 style="font-style:italic;color:red;"><a href="#">Write To Us</a></h4>
+	   <p>Boston Public Library<br/>
+          700 Boylston St.<br/>
+          Boston, MA 02116</p><br/></br>
+	   <p style="font-style:italic;color:red;"> Please fill out the following form to submit your queries:</p>
+		
+	<form class="form-horizontal" role="form" id="myForm" onSubmit="return validateForm();">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email" style="color:white;">Email:</label>
+      <div class="col-sm-6">
+        <input type="email" class="form-control" name="email" placeholder="Enter email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="name" style="color:white;">Name:</label>
+      <div class="col-sm-6">          
+        <input type="text" class="form-control" name="name" placeholder="Enter Full Name">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="msg" style="color:white;">Message:</label>
+      <div class="col-sm-6">          
+        <input type="text" class="form-control" id="msg" placeholder="Enter your message">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="com" style="color:white;">Complaint:</label>
+      <div class="col-sm-6">          
+        <textarea class="form-control" rows="5" id="comment"></textarea>
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-6">
+        <div class="checkbox">
+          <label style="color:white;"><input type="checkbox"> Remember me</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-8">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+  </form>
+  </div>
+ 
+  <div class="footer">
+            <div class="insidefooter"> 
+			    <div class="foot" id="name"><a href="">Public Library</a></div>
+				   <span> Follow us on -- <a href="">FACEBOOK | TWITTER | YOUTUBE</a></span>
+            	<div class="foot" id="sm"><span><a href="">Home | Site Map | Search | Terms Of Use<br />
+                @Public Library.Boston, Massachusetts 02115. Copyright complaints</div></span>
+            <div>
+	</div>
+  
+</div>
+</body>
+</html>

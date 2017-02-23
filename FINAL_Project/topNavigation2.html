@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Final Project:Online Book Store</title>
+	<link rel="stylesheet" type="text/css" href="projectStyle.css">
+	<link rel="stylesheet" type="text/css" href="queries.css">
+	<meta name="viewpoint" content="width=device-width,initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		
+		<div class="header">
+			<div class="header1">
+				<h1><img src="Images/headImage.png" alt="headingImage" width="50px" height="40px"/>Public Library</h1>
+			</div>
+		</div>
+
+		<div class="navigation">
+			<ul class="dropdown">
+                <li id="menu-list"> <a href=""><span><img src="images/menu.png" alt="menu icon" width="20px" /></span></li>
+            </ul>
+            <ul class="menu"> 
+			    <li class="link-list-item"> <a href="Project.html">HOME </a></li>
+            	<li class="link-list-item"> <a href="topNavigation1.html">ABOUT </a></li>
+                <li class="link-list-item"> <a href="topNavigation2.html">BOOKS</a></li>
+                <li class="link-list-item"> <a href="imageNavigation.html">NEW </a></li>
+                <li class="link-list-item"> <a href="topNavigation3.HTML">EVENTS</a></li>
+                <li class="link-list-item"> <a href="contact.html">CONTACT </a></li>
+			</ul>
+		</div>
+
+        <div class="mainContent">
+          <p>Use the <a href="">Online catalog</a> to find books, videos, cds, etc. that you can check out and take home. </p>
+		  <p>You can also find BPL research materials (acquired by the library after 1974) for in-building us</p>
+		  <p> Public Library now offers streaming movies, television episodes, music, and audio books. Popular titles are always available <br/>
+		      so you can borrow what you like, when you like and enjoy them on your computer, Android device, or iOS device.</p>
+		  <h4><strong>Online Collection:<strong></h4> 
+		  <p>Many of our collections can be accessed online. Manuscripts, ebooks, photos and other images, videos, sound archives, and more are available for viewing, 
+		     listening, and downloading.A few online collections require your Boston Public Library card number and PIN, but most do not. </p>
+		  
+		  <button type="button" onclick="loadDoc()" style="background-color:red;">Get my Popular Book collection</button>
+          <br><br>
+
+		  <table id="demo"></table>
+		  </div>
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      myFunction(xhttp);
+    }
+  };
+  xhttp.open("GET", "books.xml", true);
+  xhttp.send();
+}
+function myFunction(xml) {
+  var i;
+  var xmlDoc = xml.responseXML;
+  var table="<tr><th>Author</th><th>Title</th></tr>";
+  var x = xmlDoc.getElementsByTagName("CD");
+  for (i = 0; i <x.length; i++) { 
+    table += "<tr><td>" +
+    x[i].getElementsByTagName("AUTHOR")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+    "</td></tr>";
+  }
+  document.getElementById("demo").innerHTML = table;
+}
+</script>
+			 
+<div class="footer">
+            <div class="insidefooter"> 
+			    <div class="foot" id="name"><a href="">Public Library</a></div>
+				   <span> Follow us on -- <a href="">FACEBOOK | TWITTER | YOUTUBE</a></span>
+            	<div class="foot" id="sm"><span><a href=""> Home | Site Map | Search | Terms Of Use<br />
+                @Public Library. Boston, Massachusetts 02115. Copyright complaints</div></span>
+            <div>
+</div>		
+  		
+				
+</div>
+</body>
+</html>

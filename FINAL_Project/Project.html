@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Final Project:Online Book Store</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link rel="stylesheet" type="text/css" href="projectStyle.css">
+	<link rel="stylesheet" type="text/css" href="queries.css">
+	<meta name="viewpoint" content="width=device-width,initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script> 
+$(document).ready(function(){
+    $("#flip").click(function(){
+        $("#panel").slideToggle("slow");
+    });
+	
+	$('input[type="text"]').focus(function() {
+    $(this).addClass("focus");
+   });
+ 
+   $('input[type="text"]').blur(function() {
+    $(this).removeClass("focus");
+  });
+
+});
+
+
+</script>
+
+<script type="text/javascript">
+var dimages=new Array();
+var numImages=5;
+for (i=0; i<numImages; i++)
+{
+  dimages[i]=new Image();
+  dimages[i].src="image"+(i+1)+".png";
+}
+var curImage=-1;
+function swapPicture()
+{
+  if (document.images)
+  {
+    var nextImage=curImage+1;
+    if (nextImage>=numImages)
+      nextImage=0;
+    if (dimages[nextImage] && dimages[nextImage].complete)
+    {
+      var target=0;
+      if (document.images.img)
+        target=document.images.img;
+      if (document.all && document.getElementById("img"))
+        target=document.getElementById("img");
+  
+      if (target)
+      {
+        target.src=dimages[nextImage].src;
+        curImage=nextImage;
+      }
+      setTimeout("swapPicture()", 2000);
+    }
+    else
+    {
+      setTimeout("swapPicture()", 200);
+    }
+  }
+}
+setTimeout("swapPicture()", 2000);
+
+
+function ajaxFunction(bookName)  
+{
+	//1. Create XmlHttpRequest Object
+	//This could be written into an external .js file that could be used within other pages as well.
+	var xmlHttp;
+   
+	try     // Firefox, Opera 8.0+, Safari
+	{
+		xmlHttp=new XMLHttpRequest();
+	}
+	catch (e)
+	{
+		try  // Internet Explorer
+		{
+			xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+		}
+		catch (e)
+		{
+			try
+			{
+				xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			catch (e)
+			{
+				alert("Your browser does not support AJAX!");
+				return false;
+			}
+		}
+	}
+	
+	//2. Call the server-side script
+	//bookName is the function parameter passed when the JS function is called
+	xmlHttp.open("GET", "books.jsp?q=" + bookName, true);   //q is the name of the parameter to be used in JSP
+	xmlHttp.send();   //leave blank, or pass null. Not used with GET requests
+
+	
+	//3. Check the server-data is ready
+	xmlHttp.onreadystatechange=function()
+	{
+		if(xmlHttp.readyState==4)
+		{
+			//4. Manipulate the DOM
+			var bookDiv = document.getElementById("bookDiv");
+			var serverData = xmlHttp.responseText;
+			bookDiv.innerHTML = serverData;
+		}
+	}
+
+}
+</script>
+	
+</head>
+
+<body>
+	<div class="container">
+		
+		<div class="header">
+			<div class="header1">
+				<h1><img src="Images/headImage.png" alt="headingImage" width="50px" height="40px"/>Public Library</h1>
+			</div>
+		</div>
+
+		<div class="navigation">
+			<ul class="dropdown">
+                <li id="menu-list"> <a href=""><span><img src="Images/menu.png" alt="menu icon" width="20px" /></span></li>
+            </ul>
+            <ul class="menu"> 
+            	<li class="link-list-item"> <a href="topNavigation1.html">ABOUT </a></li>
+                <li class="link-list-item"> <a href="topNavigation2.html">BOOKS</a></li>
+                <li class="link-list-item"> <a href="imageNavigation.html">NEW </a></li>
+                <li class="link-list-item"> <a href="topNavigation3.HTML">EVENTS</a></li>
+                <li class="link-list-item"> <a href="contact.html">CONTACT</a></li>
+                <li class="link-list-item-right" id="searchText"><input type="text" name="search" placeholder="Enter your search..">
+				     <input type="submit" value="submit" id="linkBtn"/></li>
+				<li class="link-list-item-right">
+				        <select id="sel1" maxlength="10">
+					        <option data-hidden="true">I'm a...</option>
+                            <option>Graduate Student</option>
+                            <option>Undergraduate Student</option>
+                            <option>Faculty And Staff</option>
+                            <option>Parent/Family Member</option>
+					        <option>Alumnus/a </option>
+					        <option>arlotte</option>
+					        <option> Charlotte student</option>
+					        <option>Retiree</option>
+                        </select>
+				</li>
+             </ul>
+		</div>
+		
+	<!-- leftBody starts -->	
+	<div class="leftBody1">
+	   <div id="flip">Library Hours(+)</div>
+          <div id="panel">Open 24/7 for students,<br />
+		    <strong> Regular Service Hours</strong><br/>	
+						Mon-Fri: 7:30am - 12 midnight<br/>
+						Sat-Sun: 9am – 10pm<br/></div>
+	      <ul class="left-menu">
+		    <li class="left-menu-list"><a href="leftMenu.html#reserve"><span class="glyphicon glyphicon-time"></span>Reserve a room Online</a></li>
+			<li class="left-menu-list"><a href="leftMenu.html#lib"><span class="glyphicon glyphicon-question-sign"></span>Ask a Librarian</a></li>
+			<li class="left-menu-list"><a href="http://myneu.neu.edu/cp/home/displaylogin"><span class="glyphicon glyphicon-refresh"></span>My Account & Renewals</a></li>
+			<li class="left-menu-list"><a href="leftMenu.html#cite"><span class="glyphicon glyphicon-pencil"></span>Citations & Bibliographies</a></li>
+			<li class="left-menu-list"><a href="leftMenu.html"><span class="glyphicon glyphicon-star"></span>Popular Catgories</a></li>
+			<li class="left-menu-list"><a href="contact.html"><span class="glyphicon glyphicon-heart"></span>Donate</a></li>
+			<li class="left-menu-list"><a href="topNavigation3.HTML"><span class="glyphicon glyphicon-user"></span>Library Programs</a></li>
+			<li class="left-menu-list"><a href="topNavigation1.html"><span class="glyphicon glyphicon-file"></span>NewsLetter</a></li>
+		</ul>
+	  </div><!--leftBody div ends here-->
+	  
+	<!--rightBody1 starts-->
+	<div class="slider"> 
+        <input type="radio" id="control1" name="controls" checked="checked" class="radioP"/>
+        <label for="control1"></label>
+        <input type="radio" id="control2" name="controls"/>
+        <label for="control2"></label>
+        <input type="radio" id="control3" name="controls"/>
+        <label for="control3"></label>
+        <input type="radio" id="control4" name="controls"/>
+        <label for="control4"></label>
+        <input type="radio" id="control5" name="controls"/>
+        <label for="control5"></label>
+        <div class="sliderinner">
+            <ul>
+                <li>
+                    <img src="Images/lib1.jpg" width="700px" height="306px"/>
+                    <div class="desc">
+                        <div class="desc-text">
+                            <h2>Take a tour</h2>
+                            <p>The biggest book store!</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="Images/image-slider-2.jpg" />
+                    <div class="desc">
+                        <div class="desc-text">
+                            <h2>Digital Library</h2>
+                            <p>A special library with focused collection of digital objects.		</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="Images/lib2.jpg" width="700px" height="306px" />
+                    <div class="desc">
+     					<div class="desc-text">
+                            <h2>Research and specialized services</h2>
+                            <p>Research Services include vast non-circulating collections and professional staff.</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="Images/image-slider-4.jpg" />
+                    <div class="desc">
+                         <div class="desc-text">
+                            <h2>Updated Catalog</h2>
+                            <p>Use the online catalog to find books, videos, cds, etc. that you can check out and take home.</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="Images/image-slider-5.jpg" />
+                    <div class="desc">
+ 
+                        <div class="desc-text">
+                            <h2>Discounts</h2>
+                            <p>Special discounts on selected items for students.</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div><!--slider--><!-- rightBody1 ends -->
+	
+	<!-- rightBody3 starts -->
+	<div class="rightBody3">
+	   <form>
+	     <p style="color:red;"><Strong>Type an alphabet to see suggestion for popular books below:</strong> <br/><input type="text" onKeyUp="ajaxFunction(this.value)"/>
+	     <div id="bookDiv"></div>
+       </form>
+	</div>
+	<!-- rightBody3 ends -->
+
+	<div class="separation">
+      <h3>..</h3>
+	</div>
+		
+	<div class="content">
+	    <h3 style="color:red;"> Popular books</h3>
+			<div class="insidecontent">
+				
+				<div class="section section-l section-m section-s">
+					<div class="image"><a href="imageNavigation.html#imageCard1"><img src="Images/card1.jpeg"></a></div>
+					<div class="text">
+					<h3><a href="#">Novel</a></h3>
+					<span>
+						A  mystery-detective novel by Dan Brown.
+					</span>
+					</div>
+				</div>
+
+				<div class="section section-l section-m section-s">
+					<div class="image"><a href="imageNavigation.html#imageCard2"><img src="Images/card2.jpg" width="330px" height="245px"></a></div>
+					<div class="text">
+					<h3><a href="#">Kids Books</a></h3>
+					<span>
+						This fun-loving book for Kids by Allia Zobel Nolan.
+					</span>
+					</div>
+				</div>
+
+				<div class="section section-l section-m section-s">
+					<div class="image"><a href="imageNavigation.html#imageCard3"><img src="Images/card3.jpg"></a></div>
+					<div class="text">
+					<h3><a href="#">Adventure</a></h3>
+					<span>
+						A series of three adventure novels<br/>
+						written by Suzanne Collins.
+					</span>
+					</div>
+				</div>
+
+				<div class="section section-l section-m section-s" id="global-section">
+					<div class="image"><a href="imageNavigation.html#imageCard4"><img src="Images/card4.jpeg"></a></div>
+					<div class="text">
+					<h3><a href="#">Challenge</a></h3>
+						<span>
+							Unleash the Power of Google,<br/>
+							Amazon, eBay and More..
+						</span>
+					</div>
+				</div>
+			
+			</div>	
+		</div>	
+		
+		<div class="leftBody3">
+		<h1 style="text-align:left;color:red;font-size:20px;">
+          Already a Member? Login: 
+          </h1><br/>
+           <form name="login">
+              Username :<input type="text" name="userid" placeholder="Enter Username"/><br/><br/>
+              Password : <input type="password" name="pswrd" placeholder="Enter password"/><br/><br/>
+              <input type="button" onclick="check(this.form)" value="Login"/>
+              <input type="reset" value="Cancel"/>
+              </form>
+			  <br/>
+		   <p> We offer special discounts for existing members.</p><br/>
+		   <p><strong> Stay Connected</strong></p>
+        </div>
+		
+		<div class="rightBody4">
+		   <h3 style="text-align:left;color:red;font-size:20px;"> Check Members and Authors Reviews</h3>
+	          <img src="Images/e4.jpg" class="imageScroll"alt="e4"/><p class="textScroll">Great spot for book pick up for those of us working in the MGH region.</p>
+		      <img src="Images/e5.jpg" class="imageScroll" alt="e5"/><p class="textScroll">Friendly and knowledgable staff, pretty good selection in the branch, really kid-friendly.</p>
+		      <img src="Images/e6.jpg" class="imageScroll" alt="e6"/><p class="textScroll">This library is mammoth.  The new extension houses a huge collection of children's book.  Their courtyard man, it was just fantastic.  It definitely makes you feel like you are in New England for sure. </p>
+		      <img src="Images/e4.jpg" class="imageScroll" alt="e4"/><p class="textScroll">Grand and beautiful library castle vibe. The courtyard is a must, a little gem that many Bostonians themselves haven't seen. </p>
+	          <p>The popular study room with the green desk lamps is always packed. There are plenty other rooms to study or do homework, just go look for them.
+                 Take your time and the explore. It's like a library, art museum, castle combo! Don't worry about getting lost. Rooms are labeled from the outside and 
+				 directories on every flow</p>
+			  <p>The Boston Athenaeum is a must see for locals and visitors alike. It is a really interesting place to check out that is a little off the beaten path. 
+			      It is only about a block away from the state house almost right on the freedom trail so it is an easy attraction to add to your list! There are only a few 
+			      rooms open to non-members so it is not a hugely time consuming item to add to your list. It is a beautiful place to visit and tons of history. </p>
+		</div>
+			
+	
+	<div class="footer">
+            <div class="insidefooter"> 
+			    <div class="foot" id="name"><a href="">Public Library</a></div>
+				   <span> Follow us on -- <a href="">FACEBOOK | TWITTER | YOUTUBE</a></span>
+            	<div class="foot" id="sm"><span><a href=""> Home | Site Map | Search | Terms Of Use<br />
+                @Public Library. Boston, Massachusetts 02115. Copyright complaints</div></span>
+            <div>
+	</div>
+
+</div>
+
+ <script type="text/javascript">
+               function check(form)/*function to check userid & password*/
+                {
+                 /*the following code checkes whether the entered userid and password are matching*/
+                if((form.userid.value == "yamini" && form.pswrd.value == "yamini")||(form.userid.value == "user" && form.pswrd.value == "pass"))
+                {
+                 window.open('Project.html')/*opens the target page while Id & password matches*/
+				 alert("Login Successful")/*displays error message*/
+				 window.document.getElementById("#header").innerHtml = "WelCome Yamini, Graduate STudent!";
+                }
+                else
+                {
+                  alert("Error Password or Username")/*displays error message*/
+                }
+                }
+</script>
+</body>
+</html>
